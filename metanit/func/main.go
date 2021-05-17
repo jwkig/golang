@@ -12,6 +12,9 @@ func main() {
 	fmt.Println("Multiplications")
 	printFunc(multiply)
 
+	fmt.Println("Addition: ", selectFn(1)(1, 2))
+	fmt.Println("Substraction: ", selectFn(2)(5, 2))
+	fmt.Println("Multiplication: ", selectFn(5)(10, 20))
 }
 
 func add(x, y int, firstName, lastName string) (sum int, fullName string) {
@@ -28,3 +31,14 @@ func printFunc(funcPtr func(int, int) int) {
 }
 func simpleAdd(x, y int) int { return x + y }
 func multiply(x, y int) int  { return x * y }
+
+func selectFn(n int) func(int, int) int {
+	switch n {
+	case 1:
+		return func(x int, y int) int { return x + y }
+	case 2:
+		return func(x int, y int) int { return x - y }
+	default:
+		return func(x int, y int) int { return x * y }
+	}
+}
