@@ -25,6 +25,10 @@ func (p person) eat(meal string) {
 	fmt.Println(p.name, "ест", meal)
 }
 
+func (p *person) updateAge(newAge int) {
+	(*p).age = newAge
+}
+
 func main() {
 	var lib library = library{"Book1", "book2", "book3"}
 	lib.print()
@@ -32,4 +36,9 @@ func main() {
 	var tom = person{name: "Tom", age: 24}
 	tom.print()
 	tom.eat("борщ с капустой, но не красный")
+
+	//var tomPointer *person = &tom
+	fmt.Println("before", tom.age)
+	tom.updateAge(33)
+	fmt.Println("after", tom.age)
 }
